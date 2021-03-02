@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TeamPlayers</string>
+    <string name="search_hint">Team &amp; player search text</string>
 </resources>
