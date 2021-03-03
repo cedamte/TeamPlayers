@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TeamPlayers</string>
     <string name="search_hint">Team &amp; player search text</string>
+    <string name="player_age">Age: %d</string>
+    <string name="player_club">Club: %s</string>
+    <string name="team_city">City: %s</string>
+    <string name="team_stadium">Stadium: %s</string>
+    <string name="more">More...</string>
 </resources>
