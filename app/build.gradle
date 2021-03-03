@@ -23,6 +23,9 @@ android {
         debug {
             buildConfigField("String", "BASE_URL", BASE_URL)
             buildConfigField("String", "END_POINT", END_POINT)
+            buildConfigField("String", "SEARCH_TYPE_PLAYER", SEARCH_TYPE_PLAYER)
+            buildConfigField("String", "SEARCH_TYPE_TEAMS", SEARCH_TYPE_TEAMS)
+            buildConfigField("int", "OFFSET", OFFSET)
         }
         release {
             minifyEnabled false
