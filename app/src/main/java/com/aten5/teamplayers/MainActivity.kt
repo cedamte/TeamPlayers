@@ -71,31 +71,37 @@ class MainActivity : AppCompatActivity() {
     private val listTeamData = listOf(
         HeaderData("Teams"),
         TeamData(
+            teamID = 1,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
         ),
         TeamData(
+            teamID = 2,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
         ),
         TeamData(
+            teamID = 3,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
         ),
         TeamData(
+            teamID = 4,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
         ),
         TeamData(
+            teamID = 5,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
         ),
         TeamData(
+            teamID = 1,
             name = "Super Fly FC",
             city = "London",
             stadium = "Super Center"
