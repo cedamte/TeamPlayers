@@ -10,6 +10,8 @@ import retrofit2.http.Query
 interface MTCMobileServie {
     @POST(BuildConfig.END_POINT)
     fun getPlayersTeams(
-        @Query("searchString") searchString: String
+        @Query("searchString") searchString: String,
+        @Query("searchType") searchType: String?,
+        @Query("offset") offset: Int?,
     ): Single<MTCMobileResponse>
 }

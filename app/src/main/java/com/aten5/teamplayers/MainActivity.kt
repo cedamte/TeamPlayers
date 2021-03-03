@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             club = "Super Fly FC",
             isFavorite = true
         ),
-        MoreButtonData("More..."),
+        MoreButtonData("More Players"),
     )
 
     private val listTeamData = listOf(
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             city = "London",
             stadium = "Super Center"
         ),
-        MoreButtonData("More...")
+        MoreButtonData("More Teams")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
