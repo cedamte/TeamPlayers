@@ -5,5 +5,5 @@ data class PlayerData(
     val name: String,
     val age: Int,
     val club: String,
-    val isFavorite: Boolean,
+//    val isFavorite: Boolean,
 ) : ComponentData
