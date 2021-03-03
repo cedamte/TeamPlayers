@@ -9,7 +9,7 @@ data class Result(
     @SerializedName("minVer")
     val minVer: String,
     @SerializedName("players")
-    val players: List<Player>?,
+    val players: List<Player>,
     @SerializedName("request_order")
     val requestOrder: Int,
     @SerializedName("searchString")
@@ -21,5 +21,5 @@ data class Result(
     @SerializedName("status")
     val status: Boolean,
     @SerializedName("teams")
-    val teams: List<Team>?
+    val teams: List<Team>
 )
