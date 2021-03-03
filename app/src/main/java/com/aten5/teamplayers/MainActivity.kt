@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -15,14 +16,11 @@ import com.aten5.teamplayers.app.TeamPlayers
 import com.aten5.teamplayers.data.*
 import com.aten5.teamplayers.databinding.ActivityMainBinding
 import com.aten5.teamplayers.di.AppComponent
-import com.aten5.teamplayers.ui.AdapterViewHolder
-import com.aten5.teamplayers.ui.HomeAdapter
-import com.aten5.teamplayers.ui.HomeViewModel
-import com.aten5.teamplayers.ui.HomeViewModelFactory
+import com.aten5.teamplayers.ui.*
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
     private lateinit var appComponent: AppComponent
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: HomeViewModel
@@ -54,17 +52,17 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.playersObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData("Player").getViewHolder())
-            newList.addAll(it.map { it.getViewHolder() }.toList())
-            newList.add(MoreButtonData("More Players").getViewHolder())
+            newList.add(HeaderData("Player").getViewHolder(this, this))
+            newList.addAll(it.map { it.getViewHolder(this, this) })
+            newList.add(MoreButtonData("More Players").getViewHolder(this, this))
             playerAdapter.updateList(newList)
         })
 
         viewModel.teamsObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData("Teams").getViewHolder())
-            newList.addAll(it.map { it.getViewHolder() })
-            newList.add(MoreButtonData("More Teams").getViewHolder())
+            newList.add(HeaderData("Teams").getViewHolder(this, this))
+            newList.addAll(it.map { it.getViewHolder(this, this) })
+            newList.add(MoreButtonData("More Teams").getViewHolder(this, this))
             teamAdapter.updateList(newList)
 
         })
@@ -96,4 +94,27 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+    override fun onMoreClick(searchType: String) {
+        when (searchType) {
+            "More Players" -> {
+                intent.getStringExtra(SearchManager.QUERY)?.also { query: String ->
+                    viewModel.getMorePlayers(searchString = query)
+                }
+            }
+            "More Teams" -> {
+                intent.getStringExtra(SearchManager.QUERY)?.also { query: String ->
+                    viewModel.getMoreTeams(searchString = query)
+                }
+
+            }
+        }
+    }
+
+    override fun onAddClick(playerData: PlayerData) {
+        Timber.d("✅ Added ${playerData.playerID} to Fav List")
+        Toast.makeText(this, "Hello World", Toast.LENGTH_LONG)
+            .show()
+    }
+
 }

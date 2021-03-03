@@ -9,6 +9,8 @@
         android:id="@+id/tv_player_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:padding="@dimen/item_padding"
+        android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,8 +20,10 @@
         android:id="@+id/tv_player_age"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minWidth="100dp"
+        android:minWidth="150dp"
+        android:padding="@dimen/item_padding"
         android:text="@string/player_age"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_player_name"
         tools:text="Age: 99" />
@@ -28,10 +32,22 @@
         android:id="@+id/tv_player_club"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:padding="@dimen/item_padding"
         android:text="@string/player_club"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        app:layout_constraintEnd_toStartOf="@id/btn_fav"
         app:layout_constraintStart_toEndOf="@id/tv_player_age"
         app:layout_constraintTop_toBottomOf="@id/tv_player_name"
         tools:text="Club: SuperFy FC" />
+
+    <ImageButton
+        android:id="@+id/btn_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/add_player_to_fav_list"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_player_name" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

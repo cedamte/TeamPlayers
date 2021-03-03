@@ -2,17 +2,35 @@ package com.aten5.teamplayers.ui
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.aten5.teamplayers.data.PlayerData
 
 class HomeAdapter<T : AdapterViewHolder> :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val data: MutableList<T> = mutableListOf()
+    private var data: List<T> = mutableListOf()
 
     fun updateList(newList: List<T>) {
-        data.clear()
-        data.addAll(newList)
-        notifyDataSetChanged()
+
+        val res = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+            override fun getOldListSize(): Int = data.size
+
+            override fun getNewListSize(): Int = newList.size
+
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return newList[newItemPosition]::class.java == data[oldItemPosition]::class.java
+            }
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                return oldItemPosition == newItemPosition
+            }
+
+        })
+
+        data = newList
+
+        res.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -38,4 +56,12 @@ interface AdapterViewHolder {
     fun from(viewGroup: ViewGroup): RecyclerView.ViewHolder
 
     fun bind(viewHolder: RecyclerView.ViewHolder)
+}
+
+interface OnMoreClickLister {
+    fun onMoreClick(searchType: String)
+}
+
+interface OnAddClickLister {
+    fun onAddClick(playerData: PlayerData)
 }

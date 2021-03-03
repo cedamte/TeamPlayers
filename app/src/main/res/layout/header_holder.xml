@@ -4,7 +4,7 @@
     android:id="@+id/tv_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/purple_700"
+    android:background="@color/teal_700"
     android:gravity="center"
     android:padding="16dp"
     android:textAppearance="?attr/textAppearanceSearchResultTitle"

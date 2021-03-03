@@ -6,4 +6,5 @@
     <string name="team_city">City: %s</string>
     <string name="team_stadium">Stadium: %s</string>
     <string name="more">More...</string>
+    <string name="add_player_to_fav_list">Add Player to Fav List</string>
 </resources>

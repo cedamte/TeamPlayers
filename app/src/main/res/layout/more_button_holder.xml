@@ -4,9 +4,9 @@
     android:id="@+id/btn_more"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/purple_700"
+    android:background="@color/teal_700"
     android:gravity="center"
-    android:padding="16dp"
-    android:textAppearance="?attr/textAppearanceSearchResultTitle"
-    android:textColor="#fff"
+    android:padding="@dimen/item_padding"
+    android:textAppearance="?attr/textAppearanceButton"
+    android:textColor="@color/white"
     tools:text="@string/more" />
