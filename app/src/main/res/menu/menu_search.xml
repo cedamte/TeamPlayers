@@ -8,4 +8,8 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
 
+    <item
+        android:id="@+id/fav_players"
+        android:title="@string/fav_players" />
+
 </menu>

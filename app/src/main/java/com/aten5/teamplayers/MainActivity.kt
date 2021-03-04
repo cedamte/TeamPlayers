@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -17,6 +18,8 @@ import com.aten5.teamplayers.data.*
 import com.aten5.teamplayers.databinding.ActivityMainBinding
 import com.aten5.teamplayers.di.AppComponent
 import com.aten5.teamplayers.ui.*
+import com.aten5.teamplayers.ui.fav.FavActivity
+import kotlinx.android.synthetic.main.player_holder.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -52,19 +55,18 @@ class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
 
         viewModel.playersObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData("Player").getViewHolder(this, this))
+            newList.add(HeaderData(id = 1, title = "Player").getViewHolder(this, this))
             newList.addAll(it.map { it.getViewHolder(this, this) })
-            newList.add(MoreButtonData("More Players").getViewHolder(this, this))
+            newList.add(MoreButtonData(id = 1, title = "More Players").getViewHolder(this, this))
             playerAdapter.updateList(newList)
         })
 
         viewModel.teamsObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData("Teams").getViewHolder(this, this))
+            newList.add(HeaderData(id = 1, title = "Teams").getViewHolder(this, this))
             newList.addAll(it.map { it.getViewHolder(this, this) })
-            newList.add(MoreButtonData("More Teams").getViewHolder(this, this))
+            newList.add(MoreButtonData(id = 1, title = "More Teams").getViewHolder(this, this))
             teamAdapter.updateList(newList)
-
         })
 
         binding.rvPlayer.apply {
@@ -95,6 +97,16 @@ class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.fav_players -> {
+                launchFavActivity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onMoreClick(searchType: String) {
         when (searchType) {
             "More Players" -> {
@@ -112,9 +124,20 @@ class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
     }
 
     override fun onAddClick(playerData: PlayerData) {
-        Timber.d("✅ Added ${playerData.playerID} to Fav List")
-        Toast.makeText(this, "Hello World", Toast.LENGTH_LONG)
-            .show()
+        val addPlayerBottomSheet = AddPlayerBottomSheet.newInstance {
+            viewModel.onAddOptionSelected(it, playerData)
+        }
+        addPlayerBottomSheet.show(supportFragmentManager, ADD_PLAYER_BOTTOM_SHEET_TAG)
+    }
+
+    private fun launchFavActivity() {
+        val intent = Intent(this, FavActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    companion object {
+        const val ADD_PLAYER_BOTTOM_SHEET_TAG = "add_player"
     }
 
 }

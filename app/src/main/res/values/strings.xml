@@ -7,4 +7,8 @@
     <string name="team_stadium">Stadium: %s</string>
     <string name="more">More...</string>
     <string name="add_player_to_fav_list">Add Player to Fav List</string>
+    <string name="ignore">Ignore</string>
+    <string name="save">Save</string>
+    <string name="label_header_bottom_sheet">Would you like to add player to your favourites</string>
+    <string name="fav_players">Fav Players</string>
 </resources>

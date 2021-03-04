@@ -1,9 +1,6 @@
 package com.aten5.teamplayers.di
 
-import com.aten5.teamplayers.repo.RemoteDataSource
-import com.aten5.teamplayers.repo.RemoteDataSourceImpl
-import com.aten5.teamplayers.repo.TeamsPlayerRepository
-import com.aten5.teamplayers.repo.TeamsPlayerRepositoryImpl
+import com.aten5.teamplayers.repo.*
 import dagger.Binds
 import dagger.Module
 
@@ -14,6 +11,14 @@ abstract class BuilderModule {
             TeamsPlayerRepository
 
     @Binds
+    abstract fun bindPlayersRepository(playersRepositoryImpl: PlayersRepositoryImpl):
+            PlayersRepository
+
+    @Binds
     abstract fun bindRemoteDataSource(remoteDataSourceImpl: RemoteDataSourceImpl):
             RemoteDataSource
+
+    @Binds
+    abstract fun bindLocalDataSource(localDataSourceImpl: LocalDataSourceImpl):
+            LocalDataSource
 }

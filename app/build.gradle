@@ -26,6 +26,7 @@ android {
             buildConfigField("String", "SEARCH_TYPE_PLAYER", SEARCH_TYPE_PLAYER)
             buildConfigField("String", "SEARCH_TYPE_TEAMS", SEARCH_TYPE_TEAMS)
             buildConfigField("int", "OFFSET", OFFSET)
+            it.buildConfigField('String', 'DATABASE_NAME', DATABASE_NAME)
         }
         release {
             minifyEnabled false
