@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.aten5.teamplayers.data.ComponentData
 import com.aten5.teamplayers.data.PlayerData
 
 class HomeAdapter<T : AdapterViewHolder> :
@@ -23,7 +24,9 @@ class HomeAdapter<T : AdapterViewHolder> :
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return oldItemPosition == newItemPosition
+                val newItem = newList[newItemPosition].getData().id
+                val oldItem = data[oldItemPosition].getData().id
+                return oldItem == newItem
             }
 
         })
@@ -56,6 +59,8 @@ interface AdapterViewHolder {
     fun from(viewGroup: ViewGroup): RecyclerView.ViewHolder
 
     fun bind(viewHolder: RecyclerView.ViewHolder)
+
+    fun getData(): ComponentData
 }
 
 interface OnMoreClickLister {

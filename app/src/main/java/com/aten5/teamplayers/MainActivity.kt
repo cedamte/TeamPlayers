@@ -19,6 +19,9 @@ import com.aten5.teamplayers.databinding.ActivityMainBinding
 import com.aten5.teamplayers.di.AppComponent
 import com.aten5.teamplayers.ui.*
 import com.aten5.teamplayers.ui.fav.FavActivity
+import com.aten5.teamplayers.ui.viewholders.MoreButtonViewHolder
+import com.aten5.teamplayers.ui.viewholders.PlayerViewHolder
+import com.aten5.teamplayers.ui.viewholders.TeamViewHolder
 import kotlinx.android.synthetic.main.player_holder.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -55,17 +58,30 @@ class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
 
         viewModel.playersObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData(id = 1, title = "Player").getViewHolder(this, this))
-            newList.addAll(it.map { it.getViewHolder(this, this) })
-            newList.add(MoreButtonData(id = 1, title = "More Players").getViewHolder(this, this))
+            newList.add(HeaderData(id = 1, title = "Player").getViewHolder())
+            newList.addAll(it.map {
+                val playerViewHolder = it.getViewHolder() as PlayerViewHolder
+                playerViewHolder.setOnClickListener(this@MainActivity)
+                playerViewHolder
+            })
+            newList.add(MoreButtonData(id = 1, title = "More Players").getViewHolder().apply {
+                this as MoreButtonViewHolder
+                this.setOnClickListener(this@MainActivity)
+            }
+            )
             playerAdapter.updateList(newList)
         })
 
         viewModel.teamsObservable.observe(this, {
             val newList = mutableListOf<AdapterViewHolder>()
-            newList.add(HeaderData(id = 1, title = "Teams").getViewHolder(this, this))
-            newList.addAll(it.map { it.getViewHolder(this, this) })
-            newList.add(MoreButtonData(id = 1, title = "More Teams").getViewHolder(this, this))
+            newList.add(HeaderData(id = 1, title = "Teams").getViewHolder())
+            newList.addAll(it.map { it.getViewHolder() })
+            newList.add(
+                MoreButtonData(id = 1, title = "More Teams").getViewHolder().apply {
+                    this as MoreButtonViewHolder
+                    this.setOnClickListener(this@MainActivity)
+                }
+            )
             teamAdapter.updateList(newList)
         })
 
@@ -128,6 +144,7 @@ class MainActivity : AppCompatActivity(), OnMoreClickLister, OnAddClickLister {
             viewModel.onAddOptionSelected(it, playerData)
         }
         addPlayerBottomSheet.show(supportFragmentManager, ADD_PLAYER_BOTTOM_SHEET_TAG)
+
     }
 
     private fun launchFavActivity() {

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aten5.teamplayers.R
+import com.aten5.teamplayers.data.ComponentData
 import com.aten5.teamplayers.data.PlayerData
 import com.aten5.teamplayers.ui.AdapterViewHolder
 import com.aten5.teamplayers.ui.OnAddClickLister
@@ -11,8 +12,9 @@ import kotlinx.android.synthetic.main.player_holder.view.*
 
 class PlayerViewHolder(
     private val data: PlayerData,
-    private val onAddClickLister: OnAddClickLister,
 ) : AdapterViewHolder {
+
+    private lateinit var onAddClickLister: OnAddClickLister
     override fun from(viewGroup: ViewGroup): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.player_holder, viewGroup, false)
@@ -27,5 +29,11 @@ class PlayerViewHolder(
         viewHolder.itemView.btn_fav.setOnClickListener {
             onAddClickLister.onAddClick(playerData = data)
         }
+    }
+
+    override fun getData(): ComponentData = data
+
+    fun setOnClickListener(lister: OnAddClickLister) {
+        this.onAddClickLister = lister
     }
 }

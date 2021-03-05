@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aten5.teamplayers.R
+import com.aten5.teamplayers.data.ComponentData
 import com.aten5.teamplayers.data.TeamData
 import com.aten5.teamplayers.ui.AdapterViewHolder
 import kotlinx.android.synthetic.main.team_holder.view.*
@@ -20,4 +21,6 @@ class TeamViewHolder(private val data: TeamData) : AdapterViewHolder {
         viewHolder.itemView.tv_team_city.text = data.city
         viewHolder.itemView.tv_team_stadium.text = data.stadium
     }
+
+    override fun getData(): ComponentData = data
 }
