@@ -7,7 +7,6 @@ import com.aten5.teamplayers.R
 import com.aten5.teamplayers.data.ComponentData
 import com.aten5.teamplayers.data.PlayerData
 import com.aten5.teamplayers.ui.AdapterViewHolder
-import com.aten5.teamplayers.ui.OnAddClickLister
 import kotlinx.android.synthetic.main.player_holder.view.*
 
 class PlayerViewHolder(
@@ -36,4 +35,8 @@ class PlayerViewHolder(
     fun setOnClickListener(lister: OnAddClickLister) {
         this.onAddClickLister = lister
     }
+}
+
+interface OnAddClickLister {
+    fun onAddClick(playerData: PlayerData)
 }

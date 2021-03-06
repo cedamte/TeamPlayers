@@ -63,10 +63,4 @@ interface AdapterViewHolder {
     fun getData(): ComponentData
 }
 
-interface OnMoreClickLister {
-    fun onMoreClick(searchType: String)
-}
 
-interface OnAddClickLister {
-    fun onAddClick(playerData: PlayerData)
-}

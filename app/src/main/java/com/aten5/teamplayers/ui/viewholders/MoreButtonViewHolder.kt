@@ -7,8 +7,6 @@ import com.aten5.teamplayers.R
 import com.aten5.teamplayers.data.ComponentData
 import com.aten5.teamplayers.data.MoreButtonData
 import com.aten5.teamplayers.ui.AdapterViewHolder
-import com.aten5.teamplayers.ui.OnAddClickLister
-import com.aten5.teamplayers.ui.OnMoreClickLister
 import kotlinx.android.synthetic.main.more_button_holder.view.*
 
 class MoreButtonViewHolder(
@@ -36,4 +34,8 @@ class MoreButtonViewHolder(
     fun setOnClickListener(lister: OnMoreClickLister) {
         this.onMoreClickLister = lister
     }
+}
+
+interface OnMoreClickLister {
+    fun onMoreClick(searchType: String)
 }

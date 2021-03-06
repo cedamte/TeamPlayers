@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -20,8 +19,9 @@ import com.aten5.teamplayers.di.AppComponent
 import com.aten5.teamplayers.ui.*
 import com.aten5.teamplayers.ui.fav.FavActivity
 import com.aten5.teamplayers.ui.viewholders.MoreButtonViewHolder
+import com.aten5.teamplayers.ui.viewholders.OnAddClickLister
+import com.aten5.teamplayers.ui.viewholders.OnMoreClickLister
 import com.aten5.teamplayers.ui.viewholders.PlayerViewHolder
-import com.aten5.teamplayers.ui.viewholders.TeamViewHolder
 import kotlinx.android.synthetic.main.player_holder.*
 import timber.log.Timber
 import javax.inject.Inject
